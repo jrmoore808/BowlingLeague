@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Team>
+
+<!--Sets up team category filters, including the css for selecting them paired with TeamViewComponent.cs-->
+<!--Brought into the view through _Layout.cshtml-->
+
+<h3>@(ViewBag.SelectedTeam == null ? "All Teams" : ViewBag.SelectedTeam)</h3>
+<table class="table table-active">
+    <tr><td><a class="btn-block btn-outline-secondary @(ViewBag.SelectedTeam == null ? "btn-warning" : "btn-outline-secondary")" asp-controller="Home" asp-action="Index" asp-route-teamid="">Home</a></td></tr>
+    @foreach (var x in Model)
+    {
+        <tr><td><a class="btn-block btn-outline-secondary @(x.TeamName == ViewBag.SelectedTeam ? "btn-warning" : "btn-outline-secondary")" asp-controller="Home" asp-action="Index" asp-route-teamid="@x.TeamId" asp-route-team="@x.TeamName">@x.TeamName</a></td></tr>
+    }
+</table>

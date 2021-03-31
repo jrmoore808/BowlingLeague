@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model IndexViewModel
+
+<!--Home page that displays a list of bowlers and their contact information. Also displays teams category filtering using Views/Shared/Components/Team/Default.cshtml-->
+
+<div class="text-center">
+    <h3>Players</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Phone</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var x in Model.Bowlers)
+            {
+                <tr>
+                    <td><b>@x.BowlerLastName</b>, @x.BowlerFirstName @x.BowlerMiddleInit</td>
+                    <td>@x.BowlerAddress @x.BowlerCity, @x.BowlerState @x.BowlerZip</td>
+                    <td>@x.BowlerPhoneNumber</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!--Pagination for each selected category-->
+<div page-info="@Model.PageNumInfo" page-url-team="@Model.TeamCategory" 
+     page-classes-enabled="true" page-class="btn" page-class-normal="btn-outline-dark" page-class-selected="btn-warning">
+</div>
